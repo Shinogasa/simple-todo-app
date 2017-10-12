@@ -1,9 +1,8 @@
 import { createStore } from 'redux';
 import { addTodo,toggleTodo,setVisibilityFilter } from './actions/index.js';
+import { todoApp } from './reducers/index.js';
 
-let store  = createStore(function() {
-    return 'Hello, redux';
-});
+let store  = createStore(todoApp);
 
 //todo追加
 var addTodoElem = document.getElementById('addTodo');
@@ -23,8 +22,8 @@ listArray.forEach((v, index) => {
     v.addEventListener('click', e => {
         //todoクリックしたら「完了状態を切り替える」アクションをStoreに渡す
         store.dispatch(toggleTodo(index));
-    })
-})
+    });
+});
 
 //フィルタリング
 var links = document.getElementById('links');
@@ -39,8 +38,6 @@ childList.filter(v => v.nodeName != '#text').forEach(v => {
         store.dispatch(setVisibilityFilter(filterText));
     });
 });
-
-
 
 var contents = document.getElementById('contents')
 contents.innerHTML = store.getState().toString()
