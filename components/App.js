@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
-import AddTodo from import '../containers/AddTodo';
+import AddTodo from '../containers/AddTodo';
 import VisibleTodoList from '../containers/VisibleTodoList';
 
 //AppはTODO追加，TODO一覧，フィルタリングメニュー(Footer)からなる
