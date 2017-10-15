@@ -2,39 +2,40 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-var nextTodoId = 0;
+var nextTodoId = 0; //TODOのid管理するための変数
 
-//todo追加
+//TODOを追加する
 var addTodo = exports.addTodo = function addTodo(text) {
-    return {
-        type: 'ADD_TODO',
-        id: nextTodoId++,
-        text: text
-    };
-};
-//todo完了
-var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
-    return {
-        type: 'TOGGLE_TODO',
-        id: id
-    };
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text: text
+  };
 };
 
-//todoフィルタリング
+//TODOを完了する
+var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
+  return {
+    type: 'TOGGLE_TODO',
+    id: id
+  };
+};
+
+//TODOをフィルタリングする
 var setVisibilityFilter = exports.setVisibilityFilter = function setVisibilityFilter(filter) {
-    return {
-        type: 'SET_VISIBILITY_FILTER',
-        filter: filter
-    };
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter: filter
+  };
 };
 
 },{}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -63,30 +64,30 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//AppはTODO追加，TODO一覧，フィルタリングメニュー(Footer)からなる
+// AppはTODO追加、TODO一覧、フィルタリングメニュー（Footer）から成る
 var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+  _inherits(App, _React$Component);
 
-    function App() {
-        _classCallCheck(this, App);
+  function App() {
+    _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_AddTodo2.default, null),
+        _react2.default.createElement(_VisibleTodoList2.default, null),
+        _react2.default.createElement(_Footer2.default, null)
+      );
     }
+  }]);
 
-    _createClass(App, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(_AddTodo2.default, null),
-                _react2.default.createElement(_VisibleTodoList2.default, null),
-                _react2.default.createElement(_Footer2.default, null)
-            );
-        }
-    }]);
-
-    return App;
+  return App;
 }(_react2.default.Component);
 
 exports.default = App;
@@ -95,7 +96,7 @@ exports.default = App;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -116,46 +117,46 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//Footerの実態は<p></p>に囲まれた3種類のフィルタリングリンク
+// Footerの実体は<p>~</p>に囲まれた3種類のフィルタリングリンク
 var Footer = function (_React$Component) {
-    _inherits(Footer, _React$Component);
+  _inherits(Footer, _React$Component);
 
-    function Footer() {
-        _classCallCheck(this, Footer);
+  function Footer() {
+    _classCallCheck(this, Footer);
 
-        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'p',
+        null,
+        'Show:',
+        " ",
+        _react2.default.createElement(
+          _FilterLink2.default,
+          { filter: 'SHOW_ALL' },
+          'All'
+        ),
+        ", ",
+        _react2.default.createElement(
+          _FilterLink2.default,
+          { filter: 'SHOW_ACTIVE' },
+          'Active'
+        ),
+        ", ",
+        _react2.default.createElement(
+          _FilterLink2.default,
+          { filter: 'SHOW_COMPLETED' },
+          'Completed'
+        )
+      );
     }
+  }]);
 
-    _createClass(Footer, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'p',
-                null,
-                'Show:',
-                " ",
-                _react2.default.createElement(
-                    _FilterLink2.default,
-                    { filter: 'SHOW_ALL' },
-                    'All'
-                ),
-                ", ",
-                _react2.default.createElement(
-                    _FilterLink2.default,
-                    { filter: 'SHOW_ACTIVE' },
-                    'Active'
-                ),
-                ", ",
-                _react2.default.createElement(
-                    _FilterLink2.default,
-                    { filter: 'SHOW_COMPLETED' },
-                    'Completed'
-                )
-            );
-        }
-    }]);
-
-    return Footer;
+  return Footer;
 }(_react2.default.Component);
 
 exports.default = Footer;
@@ -235,7 +236,66 @@ exports.default = Link;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// Todoの実体は<li>~</li>
+var Todo = function (_React$Component) {
+  _inherits(Todo, _React$Component);
+
+  function Todo() {
+    _classCallCheck(this, Todo);
+
+    return _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).apply(this, arguments));
+  }
+
+  _createClass(Todo, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'li',
+        {
+          onClick: this.props.onClick,
+          style: { textDecoration: this.props.completed ? 'line-through' : 'none' }
+        },
+        this.props.text
+      );
+    }
+  }]);
+
+  return Todo;
+}(_react2.default.Component);
+
+// 制約の指定
+
+
+Todo.propTypes = {
+  onClick: _react.PropTypes.func.isRequired,
+  completed: _react.PropTypes.bool.isRequired,
+  text: _react.PropTypes.string.isRequired
+};
+
+exports.default = Todo;
+
+},{"react":68}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -246,9 +306,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _todo = require('./todo');
+var _Todo = require('./Todo');
 
-var _todo2 = _interopRequireDefault(_todo);
+var _Todo2 = _interopRequireDefault(_Todo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -258,119 +318,60 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//todolistの実態は<ul></ul>
-//リストの中の<li></li>はTodoコンポーネント
+// TodoListの実体は<ul>~</ul>
+// リストの中の<li>~</li>はTodoコンポーネントを使用している
 var TodoList = function (_React$Component) {
-    _inherits(TodoList, _React$Component);
+  _inherits(TodoList, _React$Component);
 
-    function TodoList() {
-        _classCallCheck(this, TodoList);
+  function TodoList() {
+    _classCallCheck(this, TodoList);
 
-        return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
+  }
+
+  _createClass(TodoList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'ul',
+        null,
+        this.props.todos.map(function (todo) {
+          return _react2.default.createElement(_Todo2.default, _extends({
+            key: todo.id
+          }, todo, {
+            onClick: function onClick() {
+              return _this2.props.onTodoClick(todo.id);
+            }
+          }));
+        })
+      );
     }
+  }]);
 
-    _createClass(TodoList, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                'ul',
-                null,
-                this.props.todos.map(function (todo) {
-                    return _react2.default.createElement(_todo2.default, _extends({
-                        key: todo.id
-                    }, todo, {
-                        onClick: function onClick() {
-                            return _this2.props.onTodoClick(todo.id);
-                        }
-                    }));
-                })
-            );
-        }
-    }]);
-
-    return TodoList;
+  return TodoList;
 }(_react2.default.Component);
 
-//制約の指定
+// 制約の指定
 
 
 TodoList.propTypes = {
-    todos: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-        id: _react.PropTypes.number.isRequired,
-        completed: _react.PropTypes.bool.isRequired,
-        text: _react.PropTypes.string.isRequired
-    }).isRequired).isRequired,
-    onTodoClick: _react.PropTypes.func.isRequired
+  todos: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+    id: _react.PropTypes.number.isRequired,
+    completed: _react.PropTypes.bool.isRequired,
+    text: _react.PropTypes.string.isRequired
+  }).isRequired).isRequired,
+  onTodoClick: _react.PropTypes.func.isRequired
 };
 
 exports.default = TodoList;
 
-},{"./todo":6,"react":68}],6:[function(require,module,exports){
+},{"./Todo":5,"react":68}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//todoの実態は<li></li>
-var Todo = function (_React$Component) {
-    _inherits(Todo, _React$Component);
-
-    function Todo() {
-        _classCallCheck(this, Todo);
-
-        return _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).apply(this, arguments));
-    }
-
-    _createClass(Todo, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'li',
-                {
-                    OnClick: this.props.onClick,
-                    style: { textDecolation: this.props.completed ? 'line-through' : 'none' }
-                },
-                this.props.text
-            );
-        }
-    }]);
-
-    return Todo;
-}(_react2.default.Component);
-
-//制約の指定
-
-
-Todo.propTypes = {
-    onClick: _react.PropTypes.func.isRequired,
-    completed: _react.PropTypes.bool.isRequired,
-    text: _react.PropTypes.string.isRequired
-};
-
-exports.default = Todo;
-
-},{"react":68}],7:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -392,50 +393,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var AddTodo = function (_React$Component) {
-    _inherits(AddTodo, _React$Component);
+  _inherits(AddTodo, _React$Component);
 
-    function AddTodo() {
-        _classCallCheck(this, AddTodo);
+  function AddTodo() {
+    _classCallCheck(this, AddTodo);
 
-        return _possibleConstructorReturn(this, (AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).apply(this, arguments));
+  }
+
+  _createClass(AddTodo, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var input = void 0;
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'form',
+          { onSubmit: function onSubmit(e) {
+              e.preventDefault();
+              if (!input.value.trim()) {
+                return;
+              }
+              _this2.props.dispatch((0, _actions.addTodo)(input.value));
+              //↑ActionCreatorからActionを取得し、Storeに渡している
+              input.value = '';
+            } },
+          _react2.default.createElement('input', { ref: function ref(node) {
+              input = node;
+            } }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'Add Todo'
+          )
+        )
+      );
     }
+  }]);
 
-    _createClass(AddTodo, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            var input = void 0;
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'form',
-                    { onSubmit: function onSubmit(e) {
-                            e.preventDefault();
-                            if (!input.value.trim()) {
-                                return;
-                            }
-
-                            //ActionCreatorからActionを取得し，Storeに渡している
-                            _this2.props.dispatch((0, _actions.addTodo)(input.value));
-
-                            input.value = '';
-                        } },
-                    _react2.default.createElement('input', { ref: function ref(node) {
-                            input = node;
-                        } }),
-                    _react2.default.createElement(
-                        'button',
-                        { type: 'submit' },
-                        'Add Todo'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return AddTodo;
+  return AddTodo;
 }(_react2.default.Component);
 
 exports.default = (0, _reactRedux.connect)()(AddTodo);
@@ -444,7 +443,7 @@ exports.default = (0, _reactRedux.connect)()(AddTodo);
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _reactRedux = require('react-redux');
@@ -457,23 +456,23 @@ var _Link2 = _interopRequireDefault(_Link);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//stateをViewのプロパティに落とし込む
+// StateをViewのプロパティに落としこむ
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-    return {
-        active: ownProps.filter === state.visibilityFilter
-    };
+  return {
+    active: ownProps.filter === state.visibilityFilter
+  };
 };
 
-//ViewからStateにイベントを伝える
+// ViewからStateにイベントを伝える
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        onClick: function onClick() {
-            dispatch((0, _actions.setVisibilityFilter)(ownProps.filter));
-        }
-    };
+  return {
+    onClick: function onClick() {
+      dispatch((0, _actions.setVisibilityFilter)(ownProps.filter));
+    }
+  };
 };
 
-//つなぎこみ
+// つなぎこみ
 var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Link2.default);
 
 exports.default = FilterLink;
@@ -482,7 +481,7 @@ exports.default = FilterLink;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _reactRedux = require('react-redux');
@@ -495,45 +494,45 @@ var _TodoList2 = _interopRequireDefault(_TodoList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//フィルタリング状態でTodoの絞込
+// フィルタリング状態によってTODOリストの絞り込みを行う
 var getVisibleTodos = function getVisibleTodos(todos, filter) {
-    switch (filter) {
-        case 'SHOW_ALL':
-            return todos;
-        case 'SHOW_COMPLETED':
-            return todos.filter(function (t) {
-                return t.completed;
-            });
-        case 'SHOW_ACTIVE':
-            return todos.filter(function (t) {
-                return !t.completed;
-            });
-    }
+  switch (filter) {
+    case 'SHOW_ALL':
+      return todos;
+    case 'SHOW_COMPLETED':
+      return todos.filter(function (t) {
+        return t.completed;
+      });
+    case 'SHOW_ACTIVE':
+      return todos.filter(function (t) {
+        return !t.completed;
+      });
+  }
 };
 
-//StateをViewのプロパティに落とし込む
+// StateをViewのプロパティに落としこむ
 var mapStateToProps = function mapStateToProps(state) {
-    return {
-        todos: getVisibleTodos(state.todos, state.visibilityFilter)
-    };
+  return {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  };
 };
 
-//ViewからStateにイベントを伝える
+// ViewからStateにイベントを伝える
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        onTodoClick: function onTodoClick(id) {
-            //ActionCreatorからAction取得してStoreに渡す
-            dispatch((0, _actions.toggleTodo)(id));
-        }
-    };
+  return {
+    onTodoClick: function onTodoClick(id) {
+      //ActionCreatorからActionを取得し、Storeに渡す
+      dispatch((0, _actions.toggleTodo)(id));
+    }
+  };
 };
 
-//つなぎこみ
-var VisibleTodoList = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_TodoList2.default);
+// つなぎこみ
+var VisibleTodoList = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_TodoList2.default); //ViewにはReact.jsで用意したTodoListを使用する
 
 exports.default = VisibleTodoList;
 
-},{"../actions":1,"../components/TodoList":5,"react-redux":60}],10:[function(require,module,exports){
+},{"../actions":1,"../components/TodoList":6,"react-redux":60}],10:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -548,18 +547,20 @@ var _redux = require('redux');
 
 var _reducers = require('./reducers');
 
+var _reducers2 = _interopRequireDefault(_reducers);
+
 var _App = require('./components/App');
 
 var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _redux.createStore)(_reducers.todoApp);
+var store = (0, _redux.createStore)(_reducers2.default);
 
 (0, _reactDom.render)(_react2.default.createElement(
-    _reactRedux.Provider,
-    { store: store },
-    _react2.default.createElement(_App2.default, null)
+  _reactRedux.Provider,
+  { store: store },
+  _react2.default.createElement(_App2.default, null)
 ), document.getElementById('root'));
 
 },{"./components/App":2,"./reducers":79,"react":68,"react-dom":50,"react-redux":60,"redux":74}],11:[function(require,module,exports){
@@ -23661,74 +23662,69 @@ function symbolObservablePonyfill(root) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _redux = require('redux');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-//1つ1つのtodoを処理するための関数
+// 一つ一つのTODOを処理するための関数（todosから利用されます）
 var todo = function todo(state, action) {
-    switch (action.type) {
-        case 'ADD_TODO':
-            return {
-                id: action.id,
-                text: action.text,
-                completed: false
-            };
+  switch (action.type) {
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      };
+    case 'TOGGLE_TODO':
+      if (state.id !== action.id) {
+        return state;
+      }
 
-        case 'TOGGLE_TODO':
-            if (state.id !== action.id) {
-                return state;
-            }
-
-            return Object.assign({}, state, {
-                completed: !state.completed
-            });
-
-        default:
-            return state;
-    }
+      return Object.assign({}, state, {
+        completed: !state.completed
+      });
+    default:
+      return state;
+  }
 };
 
-//複数のtodoを処理するための関数
+// 複数のTODOを処理するための関数
 var todos = function todos() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
 
-    switch (action.type) {
-        case 'ADD_TODO':
-            return [].concat(_toConsumableArray(state), [todo(undefined, action)]);
-
-        case 'TOGGLE_TODO':
-            return state.map(function (t) {
-                return todo(t, action);
-            });
-
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [].concat(_toConsumableArray(state), [todo(undefined, action)]);
+    case 'TOGGLE_TODO':
+      return state.map(function (t) {
+        return todo(t, action);
+      });
+    default:
+      return state;
+  }
 };
 
-//todoの表示状態を処理するための関数
+// TODOの表示状態を処理するための関数
 var visibilityFilter = function visibilityFilter() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
-    var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
+  var action = arguments[1];
 
-    switch (action.type) {
-        case 'SET_VISIBILITY_FILTER':
-            return action.filter;
-
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
 };
 
-//上の関数をまとめて公開
+// 上記の関数をまとめて外に公開する
 var todoApp = (0, _redux.combineReducers)({
-    todos: todos,
-    visibilityFilter: visibilityFilter
+  todos: todos,
+  visibilityFilter: visibilityFilter
 });
 exports.default = todoApp;
 
